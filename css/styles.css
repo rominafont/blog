@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,900;1,9..40,400&family=Kalnia:wght@500&display=swap');
+
+body {
+    font-family: 'DM Sans';
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+.Header{
+    background-color: #430404;
+    color: #ffffff;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+}
+
+.Logo {
+    font-size: 35px;
+    text-transform: uppercase;
+    margin-left: 20px;
+    font-family: 'Kalnia'; 
+}
+
+.Header-nav ul{
+    font-size: 20px;
+    list-style: none;
+    margin: 5%;
+    margin-left: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.Header-nav ul li{
+    display: inline;
+    margin-right: 20px;
+}
+
+.Header-nav ul li a{
+    text-decoration: none;
+    color: #F5F5F5;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.Header-nav ul li a:hover{
+    color: #F5F5F5;
+}
+
+.Article{
+    padding: 5%;
+}
+
+.txt{
+    font-weight: 400;
+    text-align: justify;
+}
+.Article-img{
+    margin: 2%;
+    align-items: center;
+    width: 800px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.quote{
+    font-style: italic;
+}
+
+
+

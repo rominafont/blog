@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lector de cartas de tarot</title>
+
+     <!----------- LINKS ------------->
+     <link rel="stylesheet" href="/css/styles.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+         crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <!------------------------------->
+</head>
+<body>
+    <header class="Header">
+        <p class="Logo">Venus' Tarot</p>
+        <nav class="Header-nav">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Contacto</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+
+    <article class="Article">
+        <div id="articleTop"></div>
+
+        <div id="content" class="Article-content"></div>
+
+    </article>
+
+    <section class="Profile">
+        <img class="Profile-image" src="" alt="autor">
+        <h2 class="Profile-name">Nombre</h2>
+        <p class="Profile-bio">Bio</p>
+        
+    </section>
+
+    <nav class="LastArticles">
+        <a class="LastArticles-btn" href="#">Anterior</a>
+        <a class="LastArticles-btn" href="#">Anterior</a>
+        <a class="LastArticles-btn" href="#">Anterior</a>
+        <a class="LastArticles-btn" href="#">Anterior</a>
+        <a class="LastArticles-btn" href="#">Anterior</a>
+        <a class="LastArticles-btn" href="#">Anterior</a>
+        <a class="LastArticles-btn" href="#">Anterior</a>
+        <a class="LastArticles-btn" href="#">Anterior</a>
+        <a class="LastArticles-btn" href="#">Anterior</a>
+        <a class="LastArticles-btn" href="#">Anterior</a>
+    </nav>
+
+    <nav class="CarrouselPages">
+        <div class="CarrouselPages-card">
+            <img class="CarrouselPages-card-img" src="" alt="">
+            <h3 class="CarrouselPages-card-title"></h3>
+        </div>
+        <div class="card"></div>
+        <div class="card"></div>
+
+    </nav>
+
+   
+    <script>
+        // URL del archivo con mis datos
+        var articulos = "./backend/articulos.json";
+
+        // Uso de la función fetch
+        fetch(articulos)
+        .then(function (response) {
+            // Verificar si la solicitud fue exitosa (código de estado 200)
+            if (!response.ok) {
+                throw new Error("La solicitud no fue exitosa: " + response.status);
+            }
+            // Parsear la respuesta como JSON y retornar la promesa resultante
+            return response.json();
+        })
+        .then(function (data) {
+            // Manipular los datos obtenidos
+            console.log("Datos obtenidos:", data);
+            data=data[0];
+            article(data);
+        })
+        .catch(function (error) {
+            // Manejar errores de red u otros problemas
+            console.error("Error en la solicitud:", error);
+        });
+
+
+        const articleTop=document.getElementById("articleTop");
+        const articleContent=document.getElementById("content");
+
+        function article(data){
+            
+
+            //ARTICLE TOP
+            articleTop.innerHTML="";
+
+            let tags=`<div class="Article-tags">`;
+            data.tags.forEach(tag => {
+                
+                    tags+=`<a class="Article-tag" href="#">${tag}</a>  `
+            });
+            tags+="</div>";
+            
+
+            articleTop.innerHTML+=`
+            <div id="articleTop">
+            <h1 class="Article-title">${data.nombre}</h1>
+            <p class="Article-resume">${data.descripcion}</p>
+            <div class="">${tags}</div>`;
+
+            //CONTENIDO
+            let artContent=data.articulo;
+
+            articleContent.innerHTML="";
+            
+            articleContent.innerHTML=`<div class="Article-content">
+                                        <h3  class="Article-subt">${artContent.intro.subtitulo}</h3>
+                                        <p class="txt">${artContent.intro.texto}</p>
+                                        <img class="Article-img" src="${artContent.intro.img}" alt="">
+                                        <h3  class="Article-subt">${artContent.des.subtitulo}</h3>
+                                        <p class="txt">${artContent.des.texto}</p>
+                                        <img class="Article-img" src="${artContent.des.img}" alt="">
+                                        <h3  class="Article-subt">${artContent.fin.subtitulo}</h3>
+                                        <p class="txt">${artContent.fin.texto}</p>
+                                        <img class="Article-img" src="${artContent.fin.img}" alt="">
+                                        <p class="quote">${data.quote}</p>
+                                    </div>`;
+
+
+            
+        }
+
+    </script>
+
+  
+
+    
+</body>
+</html>
